@@ -1,0 +1,447 @@
+@(user: Option[User],room:Option[Room],now_menu:Int,enemy:Option[User]=null)(content: Html)
+
+<!DOCTYPE html>
+
+<html xmlns:fb="http://ogp.me/ns/fb#">
+    <head>
+        <title>FACEBOOK REMOTE VOLLEY BALL</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <!-- Bootstrap -->
+
+        <script type="text/javascript" language="javascript" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10-dev/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" language="javascript" src="//cdn.datatables.net/plug-ins/28e7751dbec/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+
+            <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+            <!-- Optional theme -->
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+
+            <!-- Latest compiled and minified JavaScript -->
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+        <script type="text/javascript" src="@routes.Application.javascriptRoutes"></script>
+
+        <script type="text/javascript" src="//d3lp1msu2r81bx.cloudfront.net/kjs/js/lib/kinetic-v5.1.0.min.js"></script>
+
+        <script src="//connect.facebook.net/en_US/sdk.js"></script>
+
+    </head>
+    <body>
+        <div id="fb-root"></div>
+        <script>
+
+
+            var myInfo;
+            var myProfile_url;
+            var friendList;
+
+            $(document ).ready(function() {
+
+            function checkLoginState() {
+            FB.getLoginStatus(function(response) {
+            $.statusChangeCallback(response);
+            });
+            }
+
+
+                @if(user == null){
+                $.ajaxSetup({ cache: true });
+                $.getScript('//connect.facebook.net/en_UK/all.js', function(){
+                    FB.init({
+                    appId      : '236220253168811', // Original
+                    //appId      : '243183015805868', // Sangtae
+                    //appId       : '241309625993207', // Matthew Test
+                        frictionlessRequests: true,
+                        status: true,
+                        version: 'v2.0'
+
+                    });
+
+                    FB.Event.subscribe('auth.authResponseChange', onAuthResponseChange);
+                    FB.Event.subscribe('auth.statusChange', onStatusChange);
+
+                    //$('#loginbutton,#feedbutton').removeAttr('disabled');
+                    //FB.getLoginStatus( $.statusChangeCallback);
+                });
+
+                function login(callback) {
+                    FB.login(callback);
+                }
+                function loginCallback(response) {
+                    console.log('loginCallback',response);
+                    if(response.status != 'connected') {
+                        top.location.href = 'https://www.facebook.com/appcenter/236220253168811';
+                    }
+                }
+                function onStatusChange(response) {
+                    if( response.status != 'connected' ) {
+                        login(loginCallback);
+                    } else {
+                        //showHome();
+                        $.statusChangeCallback(response);
+                    }
+                }
+                function onAuthResponseChange(response) {
+                    console.log('onAuthResponseChange', response);
+                }
+
+            $.statusChangeCallback = function(response){
+                console.log('statusChangeCallback');
+                console.log(response);
+                if (response.status === 'connected') {
+
+                    $.addMe(response);
+                    //drawGame();
+
+                    // 1. Get My Profile
+
+                    // 2. Get Friend List
+                } else if (response.status === 'not_authorized') {
+                    $('.div-msg #msg' ).html('Please login using Facebook login button.');
+                    $('.div-msg' ).fadeIn();
+                } else {
+                    $('.div-msg #msg' ).html('Please login using Facebook login button.');
+                    $('.div-msg' ).fadeIn();
+                }
+            }
+
+            $.checkLoginStatus = function() {
+            FB.getLoginStatus(function(response) {
+            $.statusChangeCallback(response);
+            });
+            }
+
+
+
+            $.addMe = function(e) {
+
+                FB.api('/me', function(response) {
+                $('#display_progress .progress-bar' ).css('width','30%');
+                    $("#login_status_msg" ).html(response.name+"님 환영합니다.");
+                    $("#fbBtn" ).hide();
+                    myInfo = response;
+                $.setUserStatusByToken("1");
+                    FB.api(
+                        'me?fields=picture.width(160).height(160).type(square)',
+                        function(response2) {
+                            console.log(response2);
+                        $('#display_progress .progress-bar' ).css('width','45%');
+                            myProfile_url = response2.picture.data.url;
+                            $.ajax(
+                                jsRoutes.controllers.User.addUser(
+                                    response.name,
+                                    response.email,
+                                    response2.picture.data.url,
+                                    response2.id
+                                )
+                            ).done(function(data){
+                                console.log(data.code);
+                            $('#display_progress .progress-bar' ).css('width','100%');
+                            $('#form1 input[id=token]' ).val(response.id);
+                            $('#form1' ).submit();
+
+                            } ).fail(function(e){
+                                console.log(e);
+                            })
+                        });
+
+
+
+                });
+            }
+
+            $.getRooms = function() {
+                $.ajax(
+                    jsRoutes.controllers.Room.getRooms()
+                    ).done(function(data){
+                        console.log(data);
+                        $('#tbl_room_list' ).append(data);
+                        $('#display_progress .progress-bar' ).css('width','100%');
+                        $('#display_progress' ).hide();
+                        $('#room_main' ).fadeIn();
+                        $('#btn-join-room' ).click(function(e){
+                            //$.setUserProfile(myInfo.id,'game_my_profile');
+                            $.setPlayersProfile($(this ).data('roomSeq'));
+                            $.setUserStatusByToken("2");
+                            $.setUserCurrentRoom($(this ).data('roomSeq'));
+                            var title = "["+$(this ).data('roomSeq')+"] "+$(this ).data('roomTitle')
+                            $('#room_title' ).html(title);
+
+
+                            $('#display_room' ).fadeOut(500,function() {
+
+                                $('#display_game' ).fadeIn(500, function() {
+
+                                });
+                            });
+
+                        $('#btn-exit-room' ).click(function(){
+                            if(confirm("Do you really want to exit game?")){
+                                $.setUserStatusByToken("1");
+                                $.setUserCurrentRoom("0");
+                                $('#display_game' ).fadeOut(500,function() {
+                                    $('#display_room' ).fadeIn();
+                                });
+                            }
+
+                        });
+
+
+                        });
+
+                    }).fail(function(e){
+                        console.log(e);
+                });
+
+            }
+
+            $.setUserStatusByToken = function(status){
+                $.ajax(
+                    jsRoutes.controllers.User.setUserStatusByToken(status,myInfo.id)
+                ).done(function(data){
+                    console.log(data);
+                }).fail(function(e){
+                    console.log(e);
+                });
+            }
+
+            $.setUserCurrentRoom = function(seq){
+                $.ajax(
+                    jsRoutes.controllers.User.setUserCurrentRoom(seq,myInfo.id)
+                ).done(function(data){
+                    console.log(data);
+                }).fail(function(e){
+                    console.log(e);
+                });
+            }
+            $.setPlayersProfile = function(seq){
+                $.ajax(
+                    jsRoutes.controllers.Room.getPlayersProfile(seq,myInfo.id)
+                ).done(function(data){
+                    console.log(data);
+                    $("#game_player_profile").append(data);
+                }).fail(function(e){
+                    console.log(e);
+                });
+            }
+
+            $.setProfile = function() {
+                $.ajax(
+                    jsRoutes.controllers.User.getUserProfile(myInfo.id)
+                ).done(function(data){
+                    console.log(data);
+                $('#display_progress .progress-bar' ).css('width','70%');
+                    $('#my_profile' ).append(data);
+                    $('#profile_main' ).fadeIn();
+                }).fail(function(e){
+                    console.log(e);
+                });
+
+            //$('#my_profile' ).append('<div class="span4"><img src="'+myProfile_url+'" /></div><div class="span8"><h5>'+myInfo.name+'</h5>Win : '+myInfo.win+'</div>');
+
+            }
+
+            }
+
+
+            @if(user != null){
+                $.ajaxSetup({ cache: true });
+                $.getScript('//connect.facebook.net/en_UK/all.js', function(){
+                FB.init({
+                appId      : '236220253168811', // Original
+                //appId      : '243183015805868', // Sangtae
+                //appId       : '241309625993207', // Matthew Test
+                frictionlessRequests: true,
+                status: true,
+                version: 'v2.0'
+
+                });
+
+                FB.Event.subscribe('auth.authResponseChange', onAuthResponseChange);
+                FB.Event.subscribe('auth.statusChange', onStatusChange);
+
+                //$('#loginbutton,#feedbutton').removeAttr('disabled');
+                //FB.getLoginStatus( $.statusChangeCallback);
+                });
+
+                function login(callback) {
+                FB.login(callback);
+                }
+                function loginCallback(response) {
+                console.log('loginCallback',response);
+                if(response.status != 'connected') {
+                top.location.href = 'https://www.facebook.com/appcenter/236220253168811';
+                }
+                }
+                function onStatusChange(response) {
+                if( response.status != 'connected' ) {
+                login(loginCallback);
+                } else {
+                //showHome();
+                $.statusChangeCallback(response);
+                }
+                }
+                function onAuthResponseChange(response) {
+                console.log('onAuthResponseChange', response);
+                }
+
+                $.statusChangeCallback = function(response){
+                console.log('statusChangeCallback');
+                console.log(response);
+                if (response.status === 'connected') {
+
+                //drawGame();
+
+                // 1. Get My Profile
+                $("#fbBtn" ).hide();
+
+                // 2. Get Friend List
+                } else if (response.status === 'not_authorized') {
+                $('.div-msg #msg' ).html('Please login using Facebook login button.');
+                $('.div-msg' ).fadeIn();
+                } else {
+                $('.div-msg #msg' ).html('Please login using Facebook login button.');
+                $('.div-msg' ).fadeIn();
+                }
+                }
+
+
+                $.checkLoginStatus = function() {
+                FB.getLoginStatus(function(response) {
+                $.statusChangeCallback(response);
+                });
+                }
+
+
+                $.logOut = function() {
+                FB.logout(function(response) {
+                // Person is now logged out
+                location.href="/";
+                });
+                }
+
+                $("#link-logout" ).click(function() {
+                $.logOut();
+                });
+            }
+            });
+
+
+
+
+
+
+        </script>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="@routes.Application.index()">FACEBOOK REMOTE VOLLEY BALL</a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="#"  data-toggle="modal" data-target="#helpModal">Help</a></li>
+                        @if(now_menu == 1 || now_menu == 2){
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Menu <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#" data-toggle="modal" data-target="#modal_makeroom">New Room</a></li>
+                                    <li><a href="#">Setting</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="#" id="link-logout">Logout</a></li>
+                                </ul>
+                            </li>
+                        }
+                        <li class="text-center">
+                            <fb:login-button scope="public_profile,email,user_friends,manage_friendlists,publish_actions" size="large" max_rows="1" onlogin="checkLoginState" id="fbBtn">
+                            </fb:login-button>
+                            <span class="label label-success" id="login_status_msg"></span>
+                            <form action="@routes.Application.chatRoom(None)" class="pull-right" id="form1" style="display: none;">
+                                <input id="token" name="token" class="input-small" type="text" placeholder="Username">
+                                <button class="btn" type="submit">Sign in</button>
+                            </form>
+                        </li>
+
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        @if(now_menu == 2 && enemy != null){
+                            @views.html.profile(enemy)
+                        }
+                        @if(user != null){
+                            @views.html.profile(user)
+                        }
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div style="height:80px;"></div>
+        <div class="container" role="main">
+        @if(room == null && user == null){
+            <div class="row" id="display_progress">
+                <div class="progress progress-striped active">
+                    <div class="progress-bar"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 10%">
+                        <span class="sr-only">Loading..</span>
+                    </div>
+                </div>
+                <div class="alert alert-danger fade in div-msg" style="display:none;">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <p id="msg"></p>
+                </div>
+            </div>
+        }
+            <div class="row" id="display_room">
+                @content
+            </div>
+
+            <footer>
+                <p>
+                    Copyright <a href="http://www.matthewlab.com">www.matthewlab.com</a> All right reserved <br/>
+                    Developed by Team NGX in CAUCSE
+                </p>
+            </footer>
+
+        </div>
+
+
+
+            <!-- Modal -->
+        <div class="modal fade" id="helpModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">Help</h4>
+                    </div>
+                    <div class="modal-body">
+                        <h4>What is this game?</h4>
+                        <p>NGX FB Volley Ball is simple volley ball game which is controlled by your any kind of smart-phone devices.</p>
+                        <h4>How can I get controller?</h4>
+                        <p>you can connect <a href="http://c.matthewlab.com" target="_blank">c.matthewlab.com</a> via safari(iPhone) or Chrome(Android) and add to Bookmark to your homescreen.</p>
+                        <h4>Game Rule</h4>
+                        <p>One on one matching system</p>
+                        <p>User can select  15, 18, 21 points as condition for win</p>
+                        <p>Passing a ball over a net within three touches</p>
+                        <p>User can give up during the game</p>
+                        <p>No time limit</p>
+                        <h4>Developers</h4>
+                        <h5>Lee Sang-Tae(tkdxo0624@@naver.com)</h5>
+                        <p>Game Client, Database</p>
+                        <h5>Matthew Chang(matthew.chang@@me.com)</h5>
+                        <p>Back-end, Facebook API</p>
+                        <h5>Jo Dong-kyoung(dkjo91@@gmail.com)</h5>
+                        <p>Controller web application</p>
+                        <p>Produced by 2014 <a href="http://www.matthewlab.com" target="_blank">Matthew LAB</a></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>

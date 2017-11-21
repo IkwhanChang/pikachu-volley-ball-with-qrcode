@@ -1,0 +1,394 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+        <head>
+          <title>models - models</title>
+          <meta name="description" content="models - models" />
+          <meta name="keywords" content="models models" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript">
+         if(top === self) {
+            var url = '../index.html';
+            var hash = 'models.package';
+            var anchor = window.location.hash;
+            var anchor_opt = '';
+            if (anchor.length >= 1)
+              anchor_opt = '@' + anchor.substring(1);
+            window.location.href = url + '#' + hash + anchor_opt;
+         }
+   	  </script>
+    
+        </head>
+        <body class="value">
+      <div id="definition">
+        <img src="../lib/package_big.png" />
+        
+        <h1>models</h1>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <span class="name">models</span>
+      </span>
+      </h4>
+      
+          <div id="comment" class="fullcommenttop"></div>
+        
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
+        
+        
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        
+
+        <div id="types" class="types members">
+              <h3>Type Members</h3>
+              <ol><li name="models.CPoint" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="CPointextendsProductwithSerializable"></a>
+      <a id="CPoint:CPoint"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="CPoint.html"><span class="name">CPoint</span></a><span class="params">(<span name="x">x: <span class="extype" name="scala.Int">Int</span> = <span class="symbol">0</span></span>, <span name="y">y: <span class="extype" name="scala.Int">Int</span> = <span class="symbol">0</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Created by changmatthew on 2014.</p>
+    </li><li name="models.CannotConnect" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="CannotConnectextendsProductwithSerializable"></a>
+      <a id="CannotConnect:CannotConnect"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="CannotConnect.html"><span class="name">CannotConnect</span></a><span class="params">(<span name="msg">msg: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="models.ChatRoom" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ChatRoomextendsActor"></a>
+      <a id="ChatRoom:ChatRoom"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="ChatRoom.html"><span class="name">ChatRoom</span></a><span class="result"> extends <span class="extype" name="akka.actor.Actor">Actor</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="models.Connected" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ConnectedextendsProductwithSerializable"></a>
+      <a id="Connected:Connected"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="Connected.html"><span class="name">Connected</span></a><span class="params">(<span name="enumerator">enumerator: <span class="extype" name="play.api.libs.iteratee.Enumerator">Enumerator</span>[<span class="extype" name="play.api.libs.json.JsValue">JsValue</span>]</span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="models.Game" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="GameextendsProductwithSerializable"></a>
+      <a id="Game:Game"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="Game.html"><span class="name">Game</span></a><span class="params">(<span name="seq">seq: <span class="extype" name="anorm.Pk">Pk</span>[<span class="extype" name="scala.Long">Long</span>]</span>, <span name="seq_room">seq_room: <span class="extype" name="scala.Int">Int</span></span>, <span name="turn">turn: <span class="extype" name="scala.Int">Int</span></span>, <span name="score_owner">score_owner: <span class="extype" name="scala.Int">Int</span></span>, <span name="score_enemy">score_enemy: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="models.GameRoom" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="GameRoomextendsActor"></a>
+      <a id="GameRoom:GameRoom"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="GameRoom.html"><span class="name">GameRoom</span></a><span class="result"> extends <span class="extype" name="akka.actor.Actor">Actor</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="models.Join" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="JoinextendsProductwithSerializable"></a>
+      <a id="Join:Join"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="Join.html"><span class="name">Join</span></a><span class="params">(<span name="token">token: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="models.JoinGame" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="JoinGameextendsProductwithSerializable"></a>
+      <a id="JoinGame:JoinGame"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="JoinGame.html"><span class="name">JoinGame</span></a><span class="params">(<span name="token">token: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="seq_room">seq_room: <span class="extype" name="scala.Long">Long</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="models.MoveGame" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="MoveGameextendsProductwithSerializable"></a>
+      <a id="MoveGame:MoveGame"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="MoveGame.html"><span class="name">MoveGame</span></a><span class="params">(<span name="token">token: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="x">x: <span class="extype" name="scala.Int">Int</span></span>, <span name="y">y: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="models.NotifyJoin" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="NotifyJoinextendsProductwithSerializable"></a>
+      <a id="NotifyJoin:NotifyJoin"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="NotifyJoin.html"><span class="name">NotifyJoin</span></a><span class="params">(<span name="username">username: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="models.NotifyJoinGame" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="NotifyJoinGameextendsProductwithSerializable"></a>
+      <a id="NotifyJoinGame:NotifyJoinGame"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="NotifyJoinGame.html"><span class="name">NotifyJoinGame</span></a><span class="params">(<span name="token">token: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="seq_room">seq_room: <span class="extype" name="scala.Long">Long</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="models.Quit" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="QuitextendsProductwithSerializable"></a>
+      <a id="Quit:Quit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="Quit.html"><span class="name">Quit</span></a><span class="params">(<span name="username">username: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="models.QuitGame" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="QuitGameextendsProductwithSerializable"></a>
+      <a id="QuitGame:QuitGame"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="QuitGame.html"><span class="name">QuitGame</span></a><span class="params">(<span name="username">username: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="models.Room" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="RoomextendsProductwithSerializable"></a>
+      <a id="Room:Room"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="Room.html"><span class="name">Room</span></a><span class="params">(<span name="seq">seq: <span class="extype" name="anorm.Pk">Pk</span>[<span class="extype" name="scala.Long">Long</span>]</span>, <span name="id_owner">id_owner: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="id_player">id_player: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="title">title: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="time">time: <span class="extype" name="scala.Int">Int</span></span>, <span name="privacy">privacy: <span class="extype" name="scala.Int">Int</span></span>, <span name="game_status">game_status: <span class="extype" name="scala.Int">Int</span></span>, <span name="gameinfo">gameinfo: <a href="Game.html" class="extype" name="models.Game">Game</a></span>, <span name="owner">owner: <a href="User.html" class="extype" name="models.User">User</a></span>, <span name="player">player: <a href="User.html" class="extype" name="models.User">User</a> = <span class="symbol">null</span></span>, <span name="watcher">watcher: <span class="extype" name="scala.Seq">Seq</span>[<a href="User.html" class="extype" name="models.User">User</a>] = <span class="symbol">null</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="models.Talk" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="TalkextendsProductwithSerializable"></a>
+      <a id="Talk:Talk"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="Talk.html"><span class="name">Talk</span></a><span class="params">(<span name="username">username: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="text">text: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="models.TalkGame" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="TalkGameextendsProductwithSerializable"></a>
+      <a id="TalkGame:TalkGame"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="TalkGame.html"><span class="name">TalkGame</span></a><span class="params">(<span name="username">username: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="text">text: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="models.User" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="UserextendsProductwithSerializable"></a>
+      <a id="User:User"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="User.html"><span class="name">User</span></a><span class="params">(<span name="seq">seq: <span class="extype" name="anorm.Pk">Pk</span>[<span class="extype" name="scala.Long">Long</span>]</span>, <span name="name">name: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="email">email: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="pic_url">pic_url: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="win">win: <span class="extype" name="scala.Int">Int</span></span>, <span name="lose">lose: <span class="extype" name="scala.Int">Int</span></span>, <span name="total">total: <span class="extype" name="scala.Int">Int</span></span>, <span name="token">token: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="joinDate">joinDate: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="current_location">current_location: <span class="extype" name="scala.Int">Int</span></span>, <span name="location_x">location_x: <span class="extype" name="scala.Int">Int</span></span>, <span name="location_y">location_y: <span class="extype" name="scala.Int">Int</span></span>, <span name="seq_current_room">seq_current_room: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      
+    </li></ol>
+            </div>
+
+        
+
+        <div id="values" class="values members">
+              <h3>Value Members</h3>
+              <ol><li name="models.CPoint" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="CPoint"></a>
+      <a id="CPoint:CPoint"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="CPoint$.html"><span class="name">CPoint</span></a><span class="result"> extends <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="models.ChatRoom" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ChatRoom"></a>
+      <a id="ChatRoom:ChatRoom"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="ChatRoom$.html"><span class="name">ChatRoom</span></a>
+      </span>
+      </h4>
+      
+    </li><li name="models.GameRoom" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="GameRoom"></a>
+      <a id="GameRoom:GameRoom"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="GameRoom$.html"><span class="name">GameRoom</span></a>
+      </span>
+      </h4>
+      
+    </li><li name="models.Games" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Games"></a>
+      <a id="Games:Games"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="Games$.html"><span class="name">Games</span></a>
+      </span>
+      </h4>
+      
+    </li><li name="models.Rooms" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Rooms"></a>
+      <a id="Rooms:Rooms"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="Rooms$.html"><span class="name">Rooms</span></a>
+      </span>
+      </h4>
+      
+    </li><li name="models.Users" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Users"></a>
+      <a id="Users:Users"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="Users$.html"><span class="name">Users</span></a>
+      </span>
+      </h4>
+      
+    </li></ol>
+            </div>
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+      <script defer="defer" type="text/javascript" id="jquery-js" src="../lib/jquery.js"></script><script defer="defer" type="text/javascript" id="jquery-ui-js" src="../lib/jquery-ui.js"></script><script defer="defer" type="text/javascript" id="tools-tooltip-js" src="../lib/tools.tooltip.js"></script><script defer="defer" type="text/javascript" id="template-js" src="../lib/template.js"></script>
+    </body>
+      </html>

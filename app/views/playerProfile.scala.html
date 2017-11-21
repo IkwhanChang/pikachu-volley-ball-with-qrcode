@@ -1,0 +1,19 @@
+@(user1:User, user2:User=null, token:String)
+<ul class="list-inline">
+    <li><img src="@user1.pic_url" width="25" height="25" /></li>
+    <li><h5>@user1.name</h5></li>
+    <li>vs</li>
+
+@if(user2 != null) {
+    <li><img src="@user2.pic_url" width="25" height="25" /></li>
+    <li><h5>@user2.name</h5></li>
+}else{
+    <li id="enemy_1">No Player</li>
+    <li><img width="25" height="25"  id="enemy_2" style="display: none;" /></li>
+    <li><h5 id="enemy_3"  style="display: none;"></h5></li>
+}
+    @if(user1.token == token){
+        <li><button type="button" class="btn btn-info btn-xs btn-play disabled">Play</button></li>
+    }else{
+        <li><button type="button" class="btn btn-warning btn-xs btn-ready">Ready</button></li>
+    }

@@ -1,0 +1,64 @@
+./start
+start
+start -Dhttp.port=disabled -Dhttps.port=9443 -Dhttps.keyStore=/Users/changmatthew/ssl/ -Dhttps.keyStorePassword=haha0070ha
+dist
+compile
+run
+dist
+compile
+exit
+dist
+build
+compile
+run
+play
+run
+dist
+run
+dist
+run
+dist
+ dist
+dist
+run
+dist
+compile
+dist
+ run
+run
+ dist
+run
+dist
+run
+dist
+run
+dist
+run
+ compile
+run
+compile
+run
+dist
+compile
+dist
+compile
+build
+compile
+dist
+ compi;e
+compile
+dist
+run
+dist
+run
+dist
+run
+ run
+compile
+run
+ dist
+run
+dist
+run
+dist
+exit
